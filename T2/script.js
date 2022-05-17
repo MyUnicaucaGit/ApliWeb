@@ -1,19 +1,27 @@
 $(function () {
+  localStorage.marcas = marcas;
+
   $("#ipInput").keyup(function () {
-    validateIp($("#ipInput").val()) ? correct("ipInput") : incorrect("ipInput");
+    validateIp($("#ipInput").val())
+      ? correct("#ipInput")
+      : incorrect("#ipInput");
   });
 
-  jqke;
+  $("#maskInput").keyup(function () {
+    validateIp($("#maskInput").val())
+      ? correct("#maskInput")
+      : incorrect("#maskInput");
+  });
 });
 
 const correct = (parSelector) => {
-  document.getElementById(parSelector).classList.add("correct");
-  document.getElementById(parSelector).classList.remove("incorrect");
+  $(parSelector).addClass("correct");
+  $(parSelector).removeClass("incorrect");
 };
 
 const incorrect = (parSelector) => {
-  document.getElementById(parSelector).classList.add("incorrect");
-  document.getElementById(parSelector).classList.remove("correct");
+  $(parSelector).addClass("incorrect");
+  $(parSelector).removeClass("correct");
 };
 
 const validateIp = (parTxt) => {
@@ -34,3 +42,8 @@ const validateIpArrange = (parArrange) => {
     return e >= 0 && e <= 255 && validateIpArrange(parArrange);
   }
 };
+
+const marcas = [
+  { name: "HP", models: ["1", "2"] },
+  { name: "M", models: ["3", "4"] },
+];
