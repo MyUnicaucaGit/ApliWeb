@@ -1,3 +1,4 @@
+/* validation functions */
 $(function () {
   localStorage.setItem("data", JSON.stringify(data));
 
@@ -34,6 +35,7 @@ $(function () {
   });
 });
 
+
 /* Correct or Incorrect */
 const correct = (parSelector) => {
   $(parSelector).addClass("correct");
@@ -67,9 +69,13 @@ const validateIpArrange = (parArrange) => {
 
 /* Serial Validation */
 const validateSerial = (parTxt) => {
-  var re = /^[a-zA-Z0-9_]+$/;
-  return parTxt.length < 11 && parTxt.length > 9 && re.test(parTxt);
-};
+    var re = /^[a-zA-Z0-9_]+-[a-zA-Z0-9_]+-[a-zA-Z0-9_]+$/;
+      return (
+      parTxt.length < 15 && 
+      parTxt.length > 13 && 
+      re.test(parTxt)
+      )
+    };
 
 const data = {
   marcas: [
