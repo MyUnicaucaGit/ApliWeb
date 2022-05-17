@@ -1,10 +1,18 @@
 /* IP validation function */
 $(function () {
+  localStorage.marcas = marcas;
+
   $("#ipInput").keyup(function () {
-    validateIp($("#ipInput").val()) ? correct("ipInput") : incorrect("ipInput");
+    validateIp($("#ipInput").val())
+      ? correct("#ipInput")
+      : incorrect("#ipInput");
   });
 
-  jqke;
+  $("#maskInput").keyup(function () {
+    validateIp($("#maskInput").val())
+      ? correct("#maskInput")
+      : incorrect("#maskInput");
+  });
 });
 
 /* Serial validation function */
@@ -20,13 +28,13 @@ $(function () {
 
 /* Correct or Incorrect */
 const correct = (parSelector) => {
-  document.getElementById(parSelector).classList.add("correct");
-  document.getElementById(parSelector).classList.remove("incorrect");
+  $(parSelector).addClass("correct");
+  $(parSelector).removeClass("incorrect");
 };
 
 const incorrect = (parSelector) => {
-  document.getElementById(parSelector).classList.add("incorrect");
-  document.getElementById(parSelector).classList.remove("correct");
+  $(parSelector).addClass("incorrect");
+  $(parSelector).removeClass("correct");
 };
 
 /* IP Validation */
@@ -59,3 +67,7 @@ var re = /^[a-zA-Z0-9_]+$/;
   )
 };
 
+const marcas = [
+  { name: "HP", models: ["1", "2"] },
+  { name: "M", models: ["3", "4"] },
+];
