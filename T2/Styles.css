@@ -1,0 +1,32 @@
+body {
+  background-image: linear-gradient(rgb(137, 176, 174), rgb(190, 227, 219));
+  text-align: center;
+}
+
+#titulo {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.register-container {
+  width: 50%;
+  margin: auto;
+}
+
+.form-container{
+
+    text-align: left;
+}
+
+.form-group {  
+  margin-left: 2em;
+  margin-bottom: 1em;
+}
+img{
+    height: 5em;
+    margin-top: 2em;
+    margin-left: 2em;
+    margin-right: 2em;
+
+}

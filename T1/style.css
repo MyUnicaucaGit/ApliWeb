@@ -1,0 +1,21 @@
+.correct {
+  border-color: green;
+}
+
+.correct:hover {
+  outline: 2px solid green;
+}
+.correct:focus {
+  outline: 2px solid green;
+}
+
+.incorrect {
+  border-color: red;
+}
+
+.incorrect:hover {
+  outline: 2px solid red;
+}
+.incorrect:focus {
+  outline: 2px solid red;
+}
