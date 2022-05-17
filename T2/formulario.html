@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
+  <!-- Head -->
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="author" content="Brayan Andrés Pinzón Benavides" />
+    <meta name="author" content="Brayan Andrés Pinzón Benavides - Juan David Sotelo Molano" />
     <meta
       name="description"
       content="Practica HTML5, CSS3 y JS, formulario para el registro de equipos de red"
@@ -28,6 +29,7 @@
 
     <title>Formulario registro de equipos de red</title>
   </head>
+  <!-- Body -->
   <body>
     <div id="titulo">
       <h2>Formulario registro de equipos de red</h3>
@@ -76,10 +78,11 @@
               >Serial</label
             >
             <input
-              type="email"
+              type="text"
               class="form-control"
-              id="exampleFormControlInput1"
-              placeholder="name@example.com"
+              id="input-serial"
+              pattern="^[a-zA-Z0-9]*$"     
+              title="Username should only contain lowercase letters. e.g. john"
             />
           </div>
           <!--  -->

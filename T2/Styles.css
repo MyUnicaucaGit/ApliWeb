@@ -30,3 +30,26 @@ img{
     margin-right: 2em;
 
 }
+#input-serial{
+  text-transform:uppercase;
+}
+
+input.invalid {
+  border-color: #DD2C00;
+}
+
+#notify {
+margin-top: 5px;
+padding: 10px;
+font-size: 12px;
+width: 100%;
+color: #fff;
+display: block;
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+}
+#notify.error {
+background-color: #DD2C00;
+}
