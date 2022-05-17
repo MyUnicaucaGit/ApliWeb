@@ -1,28 +1,61 @@
-(function() {
-  
-    var input              = document.getElementById('input-serial');
-    var form               = document.getElementById('form-container');
-    var elem               = document.createElement('div');
-        elem.id            = 'notify';
-        elem.style.display = 'none';
-  
-        form.appendChild(elem);
-  
-    input.addEventListener('invalid', function(event){
-      event.preventDefault();
-      if ( ! event.target.validity.valid ) {
-        input.className    = 'invalid animated shake';
-        elem.textContent   = 'Username should only contain lowercase letters e.g. john';
-        elem.className     = 'error';
-        elem.style.display = 'block';
-      }
-    });
-  
-    input.addEventListener('input', function(event){
-      if ( 'block' === elem.style.display ) {
-        input.className = '';
-        elem.style.display = 'none';
-      }
-    });
-  
-  })();
+/* IP validation function */
+$(function () {
+  $("#ipInput").keyup(function () {
+    validateIp($("#ipInput").val()) ? correct("ipInput") : incorrect("ipInput");
+  });
+
+  jqke;
+});
+
+/* Serial validation function */
+$(function () {
+  $("#serialInput").keyup(function () {
+    validateSerial($("#serialInput").val())
+      ? correct("serialInput")
+      : incorrect("serialInput");
+  });
+
+  jqke;
+});
+
+/* Correct or Incorrect */
+const correct = (parSelector) => {
+  document.getElementById(parSelector).classList.add("correct");
+  document.getElementById(parSelector).classList.remove("incorrect");
+};
+
+const incorrect = (parSelector) => {
+  document.getElementById(parSelector).classList.add("incorrect");
+  document.getElementById(parSelector).classList.remove("correct");
+};
+
+/* IP Validation */
+const validateIp = (parTxt) => {
+  const d = parTxt.split(".").map((e) => parseInt(e));
+  return (
+    parTxt.length < 15 &&
+    !/\s/.test(parTxt) &&
+    d.length === 4 &&
+    validateIpArrange(d)
+  );
+};
+
+const validateIpArrange = (parArrange) => {
+  const e = parArrange.pop();
+  if (parArrange.length === 0) {
+    return e >= 0 && e <= 255;
+  } else {
+    return e >= 0 && e <= 255 && validateIpArrange(parArrange);
+  }
+};
+
+/* Serial Validation */
+const validateSerial = (parTxt) => {
+var re = /^[a-zA-Z0-9_]+$/;
+  return (
+  parTxt.length < 11 && 
+  parTxt.length > 9 && 
+  re.test(parTxt)
+  )
+};
+

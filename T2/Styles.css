@@ -30,26 +30,27 @@ img{
     margin-right: 2em;
 
 }
+.correct {
+  border-color: green;
+}
+
+.correct:hover {
+  outline: 2px solid green;
+}
+.correct:focus {
+  outline: 2px solid green;
+}
+
+.incorrect {
+  border-color: red;
+}
+
+.incorrect:hover {
+  outline: 2px solid red;
+}
+.incorrect:focus {
+  outline: 2px solid red;
+}
 #input-serial{
   text-transform:uppercase;
-}
-
-input.invalid {
-  border-color: #DD2C00;
-}
-
-#notify {
-margin-top: 5px;
-padding: 10px;
-font-size: 12px;
-width: 100%;
-color: #fff;
-display: block;
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-}
-#notify.error {
-background-color: #DD2C00;
 }
