@@ -1,6 +1,19 @@
-/* IP validation function */
 $(function () {
-  localStorage.marcas = marcas;
+  localStorage.setItem("data", JSON.stringify(data));
+
+  let marcas = JSON.parse(localStorage.getItem("data")).marcas;
+
+  marcas.forEach((marca) => {
+    $("#marcaInput").append(
+      "<option value='" + marca.name + "'>" + marca.name + "</option>"
+    );
+  });
+
+  updateModelOptions(marcas);
+
+  $("#marcaInput").change(function () {
+    updateModelOptions(marcas);
+  });
 
   $("#ipInput").keyup(function () {
     validateIp($("#ipInput").val())
@@ -13,17 +26,12 @@ $(function () {
       ? correct("#maskInput")
       : incorrect("#maskInput");
   });
-});
 
-/* Serial validation function */
-$(function () {
   $("#serialInput").keyup(function () {
     validateSerial($("#serialInput").val())
-      ? correct("serialInput")
-      : incorrect("serialInput");
+      ? correct("#serialInput")
+      : incorrect("#serialInput");
   });
-
-  jqke;
 });
 
 /* Correct or Incorrect */
@@ -59,15 +67,24 @@ const validateIpArrange = (parArrange) => {
 
 /* Serial Validation */
 const validateSerial = (parTxt) => {
-var re = /^[a-zA-Z0-9_]+$/;
-  return (
-  parTxt.length < 11 && 
-  parTxt.length > 9 && 
-  re.test(parTxt)
-  )
+  var re = /^[a-zA-Z0-9_]+$/;
+  return parTxt.length < 11 && parTxt.length > 9 && re.test(parTxt);
 };
 
-const marcas = [
-  { name: "HP", models: ["1", "2"] },
-  { name: "M", models: ["3", "4"] },
-];
+const data = {
+  marcas: [
+    { name: "HP", models: ["1", "2"] },
+    { name: "M", models: ["3", "4"] },
+  ],
+};
+
+const updateModelOptions = (parMarcas) => {
+  $("#modeloInput").empty();
+  let modelos = parMarcas.filter((el) => el.name == $("#marcaInput").val())[0]
+    .models;
+  modelos.forEach((modelo) => {
+    $("#modeloInput").append(
+      "<option value='" + modelo + "'>" + modelo + "</option>"
+    );
+  });
+};
