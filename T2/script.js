@@ -33,8 +33,19 @@ $(function () {
       ? correct("#serialInput")
       : incorrect("#serialInput");
   });
-});
 
+  $("#registerButton").click(function () {
+    if (
+      validateIp($("#ipInput").val()) &&
+      validateIp($("#maskInput").val()) &&
+      validateSerial($("#serialInput").val())
+    ) {
+      alert("Bien");
+    } else {
+      alert("Mal");
+    }
+  });
+});
 
 /* Correct or Incorrect */
 const correct = (parSelector) => {
@@ -69,19 +80,16 @@ const validateIpArrange = (parArrange) => {
 
 /* Serial Validation */
 const validateSerial = (parTxt) => {
-    var re = /^[a-zA-Z0-9_]+-[a-zA-Z0-9_]+-[a-zA-Z0-9_]+$/;
-      return (
-      parTxt.length < 15 && 
-      parTxt.length > 13 && 
-      re.test(parTxt)
-      )
-    };
+  var re = /^[a-zA-Z0-9_]+-[a-zA-Z0-9_]+-[a-zA-Z0-9_]+$/;
+  return parTxt.length < 15 && parTxt.length > 13 && re.test(parTxt);
+};
 
 const data = {
   marcas: [
     { name: "HP", models: ["1", "2"] },
     { name: "M", models: ["3", "4"] },
   ],
+  devices: [],
 };
 
 const updateModelOptions = (parMarcas) => {
