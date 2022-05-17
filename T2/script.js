@@ -16,22 +16,22 @@ $(function () {
     updateModelOptions(marcas);
   });
 
+  $("#serialInput").keyup(function () {
+    validateSerial($("#serialInput").val())
+      ? correct("#serialInput","#serialError")
+      : incorrect("#serialInput","#serialError");
+  });
+
   $("#ipInput").keyup(function () {
     validateIp($("#ipInput").val())
-      ? correct("#ipInput")
-      : incorrect("#ipInput");
+      ? correct("#ipInput","#ipError")
+      : incorrect("#ipInput","#ipError");
   });
 
   $("#maskInput").keyup(function () {
     validateIp($("#maskInput").val())
-      ? correct("#maskInput")
-      : incorrect("#maskInput");
-  });
-
-  $("#serialInput").keyup(function () {
-    validateSerial($("#serialInput").val())
-      ? correct("#serialInput")
-      : incorrect("#serialInput");
+      ? correct("#maskInput","#maskError")
+      : incorrect("#maskInput", "#maskError");
   });
 
   $("#registerButton").click(function () {
@@ -48,21 +48,25 @@ $(function () {
 });
 
 /* Correct or Incorrect */
-const correct = (parSelector) => {
+const correct = (parSelector,parAlert) => {
   $(parSelector).addClass("correct");
   $(parSelector).removeClass("incorrect");
+  $(parAlert).addClass("hidden-alert");
+  $(parAlert).removeClass("u-alert");    
 };
 
-const incorrect = (parSelector) => {
+const incorrect = (parSelector,parAlert) => {
   $(parSelector).addClass("incorrect");
-  $(parSelector).removeClass("correct");
+  $(parSelector).removeClass("correct");  
+  $(parAlert).addClass("u-alert");
+  $(parAlert).removeClass("hidden-alert");  
 };
 
 /* IP Validation */
 const validateIp = (parTxt) => {
   const d = parTxt.split(".").map((e) => parseInt(e));
   return (
-    parTxt.length < 15 &&
+    parTxt.length < 16 &&
     !/\s/.test(parTxt) &&
     d.length === 4 &&
     validateIpArrange(d)

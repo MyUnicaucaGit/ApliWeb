@@ -54,3 +54,27 @@ img{
 #serialInput{
   text-transform:uppercase;
 }
+
+.hidden-alert {
+  display: block;
+  height: 0;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  transition: ease 400ms;
+  font-size: 0.8em;
+}
+
+.u-alert {
+  color: rgb(129, 3, 3);
+  opacity: 1;
+  height: auto;
+  max-height: none;
+  margin-top: 0.3em;
+}
+
+.alert-img{
+  width: 20px;
+  height: 20px;
+  margin: 0px;
+}
