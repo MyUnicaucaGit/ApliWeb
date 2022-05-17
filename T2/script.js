@@ -20,19 +20,19 @@ $(function () {
 
   $("#serialInput").keyup(function () {
     validateSerial($("#serialInput").val())
-      ? correct("#serialInput","#serialError")
-      : incorrect("#serialInput","#serialError");
+      ? correct("#serialInput", "#serialError")
+      : incorrect("#serialInput", "#serialError");
   });
 
   $("#ipInput").keyup(function () {
     validateIp($("#ipInput").val())
-      ? correct("#ipInput","#ipError")
-      : incorrect("#ipInput","#ipError");
+      ? correct("#ipInput", "#ipError")
+      : incorrect("#ipInput", "#ipError");
   });
 
   $("#maskInput").keyup(function () {
     validateIp($("#maskInput").val())
-      ? correct("#maskInput","#maskError")
+      ? correct("#maskInput", "#maskError")
       : incorrect("#maskInput", "#maskError");
   });
 
@@ -43,8 +43,6 @@ $(function () {
       validateSerial($("#serialInput").val()) &&
       $("#imageInput").prop("files").length === 1
     ) {
-      uploadImg($("#imageInput").prop("files")[0]);
-
       let device = {
         marca: $("#marcaInput").val(),
         modelo: $("#modeloInput").val(),
@@ -66,18 +64,18 @@ $(function () {
 });
 
 /* Correct or Incorrect */
-const correct = (parSelector,parAlert) => {
+const correct = (parSelector, parAlert) => {
   $(parSelector).addClass("correct");
   $(parSelector).removeClass("incorrect");
   $(parAlert).addClass("hidden-alert");
-  $(parAlert).removeClass("u-alert");    
+  $(parAlert).removeClass("u-alert");
 };
 
-const incorrect = (parSelector,parAlert) => {
+const incorrect = (parSelector, parAlert) => {
   $(parSelector).addClass("incorrect");
-  $(parSelector).removeClass("correct");  
+  $(parSelector).removeClass("correct");
   $(parAlert).addClass("u-alert");
-  $(parAlert).removeClass("hidden-alert");  
+  $(parAlert).removeClass("hidden-alert");
 };
 
 /* IP Validation */
@@ -114,28 +112,6 @@ const updateModelOptions = (parMarcas) => {
     $("#modeloInput").append(
       "<option value='" + modelo + "'>" + modelo + "</option>"
     );
-  });
-};
-
-const uploadImg = (file) => {
-  let form = new FormData();
-
-  form.append("image", file);
-  let url =
-    "https://api.imgbb.com/1/upload?key=4a161374f6b1645e5719cb67a9b3f36e";
-
-  const config = {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Access-Control-Allow-Origin": "*",
-      Connection: "keep-alive",
-      "Content-Type": "application/json",
-    },
-    body: file,
-  };
-  fetch(url, config).then((response) => {
-    console.log(response);
   });
 };
 
