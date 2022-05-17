@@ -1,6 +1,6 @@
 # Desarrollo de Aplicaciones Web
 Materia vista en la Universidad del Cauca en el periodo 2022-1
-## rabajos
+## Trabajos
 ### T1
 Ejercicio JS: Control de entrada para direcciones IP
 ### T2
