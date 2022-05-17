@@ -1,4 +1,4 @@
-/* IP validation function */
+/* validation functions */
 $(function () {
   localStorage.marcas = marcas;
 
@@ -13,18 +13,15 @@ $(function () {
       ? correct("#maskInput")
       : incorrect("#maskInput");
   });
-});
 
-/* Serial validation function */
-$(function () {
   $("#serialInput").keyup(function () {
     validateSerial($("#serialInput").val())
-      ? correct("serialInput")
-      : incorrect("serialInput");
+      ? correct("#serialInput")
+      : incorrect("#serialInput");
   });
 
-  jqke;
 });
+
 
 /* Correct or Incorrect */
 const correct = (parSelector) => {
@@ -59,13 +56,15 @@ const validateIpArrange = (parArrange) => {
 
 /* Serial Validation */
 const validateSerial = (parTxt) => {
-var re = /^[a-zA-Z0-9_]+$/;
+// var re = /^[a-zA-Z0-9_]+$/;
+var re = /^[a-zA-Z0-9_]+-[a-zA-Z0-9_]+-[a-zA-Z0-9_]+$/;
   return (
-  parTxt.length < 11 && 
-  parTxt.length > 9 && 
+  parTxt.length < 15 && 
+  parTxt.length > 13 && 
   re.test(parTxt)
   )
 };
+
 
 const marcas = [
   { name: "HP", models: ["1", "2"] },

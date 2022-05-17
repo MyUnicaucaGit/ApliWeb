@@ -51,6 +51,6 @@ img{
 .incorrect:focus {
   outline: 2px solid red;
 }
-#input-serial{
+#serialInput{
   text-transform:uppercase;
 }
