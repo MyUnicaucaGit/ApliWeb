@@ -43,6 +43,8 @@ $(function () {
       validateSerial($("#serialInput").val()) &&
       $("#imageInput").prop("files").length === 1
     ) {
+      uploadImg($("#imageInput").prop("files")[0]);
+
       let device = {
         marca: $("#marcaInput").val(),
         modelo: $("#modeloInput").val(),
@@ -100,14 +102,6 @@ const validateSerial = (parTxt) => {
   return parTxt.length < 15 && parTxt.length > 13 && re.test(parTxt);
 };
 
-const data = {
-  marcas: [
-    { name: "HP", models: ["1", "2"] },
-    { name: "M", models: ["3", "4"] },
-  ],
-  devices: [],
-};
-
 const updateModelOptions = (parMarcas) => {
   $("#modeloInput").empty();
   let modelos = parMarcas.filter((el) => el.name == $("#marcaInput").val())[0]
@@ -119,4 +113,32 @@ const updateModelOptions = (parMarcas) => {
   });
 };
 
-const registerDevice = (parDevice) => {};
+const uploadImg = (file) => {
+  let form = new FormData();
+
+  form.append("image", file);
+  let url =
+    "https://api.imgbb.com/1/upload?key=4a161374f6b1645e5719cb67a9b3f36e";
+
+  const config = {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+      Connection: "keep-alive",
+      "Content-Type": "application/json",
+    },
+    body: file,
+  };
+  fetch(url, config).then((response) => {
+    console.log(response);
+  });
+};
+
+const data = {
+  marcas: [
+    { name: "TP-Link", models: ["1", "2"] },
+    { name: "M", models: ["3", "4"] },
+  ],
+  devices: [],
+};
