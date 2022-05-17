@@ -1,6 +1,8 @@
 /* validation functions */
 $(function () {
-  localStorage.setItem("data", JSON.stringify(data));
+  if (!localStorage.getItem("data")) {
+    localStorage.setItem("data", JSON.stringify(data));
+  }
 
   let marcas = JSON.parse(localStorage.getItem("data")).marcas;
 
@@ -38,11 +40,25 @@ $(function () {
     if (
       validateIp($("#ipInput").val()) &&
       validateIp($("#maskInput").val()) &&
-      validateSerial($("#serialInput").val())
+      validateSerial($("#serialInput").val()) &&
+      $("#imageInput").prop("files").length === 1
     ) {
-      alert("Bien");
+      let device = {
+        marca: $("#marcaInput").val(),
+        modelo: $("#modeloInput").val(),
+        serial: $("#serialInput").val(),
+        ip: $("#ipInput").val(),
+        mask: $("#maskInput").val(),
+        image: $("#imageInput").prop("files")[0],
+      };
+      let d = JSON.parse(localStorage.getItem("data"));
+      console.log(d.devices);
+
+      d.devices = [...d.devices, device];
+      localStorage.setItem("data", JSON.stringify(d));
+      alert("Dispositivo registrado");
     } else {
-      alert("Mal");
+      alert("Complete correctamente los campos");
     }
   });
 });
@@ -102,3 +118,5 @@ const updateModelOptions = (parMarcas) => {
     );
   });
 };
+
+const registerDevice = (parDevice) => {};
