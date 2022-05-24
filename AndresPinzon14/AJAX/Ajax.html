@@ -1,0 +1,117 @@
+
+<!-- Clase: 24/05/2022 -->
+
+<!-- AJAX:  -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX</title>
+</head>
+<body>
+    <div>
+        <h1>AJAX</h1>
+    </div>
+    <div>
+        <p>Técnica de desarrollo web que permite que las apps funcionen y que envíen y recuperen datos de un servidor, sin tener que cargar una página web. Permite intercambiar datos con un servidor de manera sencilla, sin recargar una página.</p>
+        <p>Es comunicion asincronica, es decir que cuando se envia una peticion no es necesario esperar por una respuesta, se pueden seguir realizando acciones.</p>
+        <p>Sin embargo, afecta el historial de navegación (por fuera del historial).</p>
+        <p>Basado en XML, aunque toda respuesta basada en texto es valida.</p>
+    </div>
+    <div>
+        <h2>Como funciona AJAX</h2>
+        <ol>
+            <li>El navegador crea una llamada de JavaScript que luego activará XMLHttpRequest.</li>
+            <li>En segundo plano, el navegador le crea una solicitud HTTP al servidor.</li>
+            <li>El servidor recibe, recupera y envía los datos al navegador.</li>
+            <li>El navegador recibe los datos y estos se verán directamente en la página. El usuario no debe recargar la página.</li>
+        </ol>
+        <p>Para usar AJAX:</p>
+        <ol>
+            <li>Creacion del objeto XMLHttpRequest</li>            
+        </ol>
+    </div>
+    <!-- Ejemplo de Aplicación AJAX -->
+    <div>
+        <h2>Ejemplo de aplicación AJAX</h2>
+        <ol>
+            <li>Crear el objeto AJAX</li>
+            <li>Asignar el atributo onreadystatechange
+                <ul>
+                    <li>sin inicializar</li>
+                    <li>abierto (acaba de llamar open())</li>
+                    <li>enviado</li>
+                    <li>recibiendo</li>
+                    <li>a punto</li>
+                </ul>
+            </li>
+            <li>Open</li>
+            <li>recibir</li>
+            <li>Mostrar datos en la pagina</li>
+
+        </ol>
+        <div id="divDatos"></div>
+       
+       <script>
+       /* Creacion del Objeto AJAX */     
+            var objXmlAjax;
+            
+            function createAjax(){
+                let objAjax;
+                if (window.XMLHttpRequest) {
+                    console.log("Creando Objeto AJAX...");
+                    objAjax = new XMLHttpRequest;
+                    console.log("Objeto AJAX Creado");                    
+                }
+                else{
+                    try {
+                        console.log("Creando Objeto AJAX Alterno...");
+                        objAjax = new ActiveXObject("Microsoft.XMLHTTP");
+                        console.log("Objeto AJAX Alterno Creado");
+                    } catch (e) {
+                        console.log("El navegador no soporta AJAX");                        
+                    }
+                }
+                return objAjax;
+            }
+
+            objXmlAjax = createAjax();
+
+            function funcionnInformacion(){
+                console.log("ejecutando funcionnInformacion()... readystate="+objXmlAjax.readystate);
+                console.log("status=" +objXmlAjax.status);
+            }
+
+            function mifuncion(){
+                if (objXmlAjax.status==200) {
+                    if (objXmlAjax.readystate0==4) {
+                        console.log("Datos"+objXmlAjax.responseText);    
+                        console.log("Datos"+objXmlAjax.responseXml);    
+                        let div = document.getElementById("divDatos");
+                        div.innerHTML = objXmlAjax.responseText;
+                    }
+                }
+            }
+
+           
+            /* Asignar el atributo onreadystatechange */
+            objXmlAjax.onreadystatechange = funcionnInformacion;
+
+            /* Abortar la peticion, se debrias hacer para serciorarse que solo se realiza la peticion una sola vez */
+            objXmlAjax.abort();
+
+            /* Prepara una conexion HTTP a traves de XMLHttpRequest: open (GET/POST, Url de la peticion, Tipo de Sincronia, Usuario, Password) */
+            objXmlAjax.open('GET', 'datos.txt', false);
+
+            /* Enviar la Peticion */
+            objXmlAjax.send();
+
+
+            
+        </script>
+    </div>
+    
+</body>
+</html>
