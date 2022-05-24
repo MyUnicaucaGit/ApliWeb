@@ -115,6 +115,10 @@ const updateModelOptions = (parMarcas) => {
   });
 };
 
+const cleanFields = () => {
+  
+}
+
 const data = {
   marcas: [
     { name: "TP-Link", models: ["1", "2"] },
