@@ -1,0 +1,14 @@
+{
+  "name": "07-6-22",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "express --view=pug myapp",
+    "generar": "express --view=pug biblio"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
